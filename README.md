@@ -1,6 +1,11 @@
 # ASP.NET CORE 3.1
-# TEST 1
-- TEST 1.1
-# TEST 2
-- TEST 2.1
-- TEST 2.2
+# Technologies
+- ASP.NET Core 3.1
+- Entity Framework core 3.1.1
+- Fluent API Configuration
+# Install
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.Tools
+
+
