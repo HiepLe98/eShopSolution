@@ -13,9 +13,7 @@ namespace eShopSolution.Data.Entities
         public int Stock { get; set; }
         public int ViewCount { get; set; }
         public DateTime CreatedDateTime { get; set; }
-        //public DateTime CreatedUser  { get; set; }
         public DateTime ModifiedDateTime { get; set; }
-        //public DateTime ModifiedUser { get; set; }
         public int SeoAlias { get; set; }
         public List<ProductInCategory> ProductInCategories { get; set; }
 
