@@ -7,22 +7,14 @@ namespace eShopSolution.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "CreatedUser",
-                table: "Products");
-
-            migrationBuilder.DropColumn(
-                name: "ModifiedUser",
-                table: "Products");
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "OrderDate",
                 table: "Orders",
                 nullable: false,
-                defaultValue: new DateTime(2020, 12, 17, 15, 53, 59, 515, DateTimeKind.Local).AddTicks(1556),
+                defaultValue: new DateTime(2020, 12, 18, 10, 12, 5, 647, DateTimeKind.Local).AddTicks(5293),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2020, 12, 17, 14, 36, 14, 693, DateTimeKind.Local).AddTicks(2462));
+                oldDefaultValue: new DateTime(2020, 12, 18, 10, 8, 26, 546, DateTimeKind.Local).AddTicks(7201));
 
             migrationBuilder.InsertData(
                 table: "AppConfigs",
@@ -33,21 +25,6 @@ namespace eShopSolution.Data.Migrations
                     { "HomeKeyword", "This is keyword of eShopSolution" },
                     { "HomeDescription", "This is description of eShopSolution" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "AppRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "7b2765aa-1b5e-4742-9ac7-81b8b03ff409", "Administrator role", "admin", "admin" });
-
-            migrationBuilder.InsertData(
-                table: "AppUserRoles",
-                columns: new[] { "UserId", "RoleId" },
-                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), new Guid("8d04dce2-969a-435d-bba4-df3f325983dc") });
-
-            migrationBuilder.InsertData(
-                table: "AppUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "62ccb256-7fba-43a4-8a4a-1e4445e9709b", new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "levanhiep@gmail.com", true, "Le", "Hiep", false, null, "levanhiep@gmail.com", "admin", "AQAAAAEAACcQAAAAECiJYsWVdUUMUrvVkka/k5Lw0qZ4v3k5gLXRnYtrWZJmDR2FZ+VgR8GuKau7bUKk+g==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -70,7 +47,7 @@ namespace eShopSolution.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CreatedDateTime", "ModifiedDateTime", "OriginalPrice", "Price", "SeoAlias" },
-                values: new object[] { 1, new DateTime(2020, 12, 17, 15, 53, 59, 536, DateTimeKind.Local).AddTicks(9306), new DateTime(2020, 12, 17, 15, 53, 59, 536, DateTimeKind.Local).AddTicks(9635), 100000m, 200000m, 0 });
+                values: new object[] { 1, new DateTime(2020, 12, 18, 10, 12, 5, 663, DateTimeKind.Local).AddTicks(9664), new DateTime(2020, 12, 18, 10, 12, 5, 664, DateTimeKind.Local).AddTicks(916), 100000m, 200000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "CategoryTranslations",
@@ -114,21 +91,6 @@ namespace eShopSolution.Data.Migrations
                 table: "AppConfigs",
                 keyColumn: "Key",
                 keyValue: "HomeTitle");
-
-            migrationBuilder.DeleteData(
-                table: "AppRoles",
-                keyColumn: "Id",
-                keyValue: new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"));
-
-            migrationBuilder.DeleteData(
-                table: "AppUserRoles",
-                keyColumns: new[] { "UserId", "RoleId" },
-                keyValues: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), new Guid("8d04dce2-969a-435d-bba4-df3f325983dc") });
-
-            migrationBuilder.DeleteData(
-                table: "AppUsers",
-                keyColumn: "Id",
-                keyValue: new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"));
 
             migrationBuilder.DeleteData(
                 table: "CategoryTranslations",
@@ -190,28 +152,14 @@ namespace eShopSolution.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 1);
 
-            migrationBuilder.AddColumn<DateTime>(
-                name: "CreatedUser",
-                table: "Products",
-                type: "datetime2",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
-            migrationBuilder.AddColumn<DateTime>(
-                name: "ModifiedUser",
-                table: "Products",
-                type: "datetime2",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "OrderDate",
                 table: "Orders",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2020, 12, 17, 14, 36, 14, 693, DateTimeKind.Local).AddTicks(2462),
+                defaultValue: new DateTime(2020, 12, 18, 10, 8, 26, 546, DateTimeKind.Local).AddTicks(7201),
                 oldClrType: typeof(DateTime),
-                oldDefaultValue: new DateTime(2020, 12, 17, 15, 53, 59, 515, DateTimeKind.Local).AddTicks(1556));
+                oldDefaultValue: new DateTime(2020, 12, 18, 10, 12, 5, 647, DateTimeKind.Local).AddTicks(5293));
         }
     }
 }

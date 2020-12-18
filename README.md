@@ -7,5 +7,13 @@
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Design
 - Microsoft.EntityFrameworkCore.Tools
-
+# Migration
+- Add-Migration Initial
+- update-database
+- add-migration SeedData
+- update-database
+- add-migration AspNetCoreIdentityDatabase
+- Remove-Migration
+- update-database
+- add-migration SeedIdentityUser
 
