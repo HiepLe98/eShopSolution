@@ -16,4 +16,5 @@
 - Remove-Migration
 - update-database
 - add-migration SeedIdentityUser
-
+- add-migration AddProductImageTable 
+- add-migration ChangeFileLengthType
