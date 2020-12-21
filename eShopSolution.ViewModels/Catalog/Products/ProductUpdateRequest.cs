@@ -1,17 +1,13 @@
-﻿using eShopSolution.ViewModels.Catalog.Common;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShopSolution.ViewModels.Catalog.Products.Manage
+namespace eShopSolution.ViewModels.Catalog.Products
 {
-    public class ProductCreateRequest : PagingRequestBase
+    public class ProductUpdateRequest
     {
-        public decimal Price { get; set; }
-        public decimal OriginalPrice { get; set; }
-        public int Stock { get; set; }
-
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Details { set; get; }
