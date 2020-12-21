@@ -6,7 +6,7 @@ using System.Text;
 
 namespace eShopSolution.ViewModels.Catalog.Products
 {
-    public class ProductCreateRequest : PagingRequestBase
+    public class ProductCreateRequest //: PagingRequestBase
     {
         public decimal Price { get; set; }
         public decimal OriginalPrice { get; set; }
