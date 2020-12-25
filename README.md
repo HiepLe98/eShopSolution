@@ -18,3 +18,5 @@
 - add-migration SeedIdentityUser
 - add-migration AddProductImageTable 
 - add-migration ChangeFileLengthType
+# Test API
+- Swagger
