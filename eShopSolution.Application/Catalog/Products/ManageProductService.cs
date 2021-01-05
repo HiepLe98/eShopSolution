@@ -98,11 +98,6 @@ namespace eShopSolution.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ProductViewModel>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             //1. Select Join
@@ -351,6 +346,11 @@ namespace eShopSolution.Application.Catalog.Products
                 SortOrder = image.SortOrder
             };
             return viewModel;
+        }
+
+        public Task<List<ProductViewModel>> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }
