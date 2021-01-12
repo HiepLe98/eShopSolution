@@ -29,12 +29,13 @@ namespace eShopSolution.ViewModels.System.Users
                 .MaximumLength(12).WithMessage("Password is not larger 12 charaters")
                 .MinimumLength(6).WithMessage("Password is at least 6 charaters");
 
-            RuleFor(x=>x).Custom((request, context) => { 
-                if(request.Password != request.ConfirmPassword)
+            RuleFor(x => x).Custom((request, context) =>
+            {
+                if (request.Password != request.ConfirmPassword)
                 {
-                    context.AddFailure("Confirm password is not match")
+                    context.AddFailure("Confirm password is not match");
                 }
-            })
+            });
         }   
     }
 }
