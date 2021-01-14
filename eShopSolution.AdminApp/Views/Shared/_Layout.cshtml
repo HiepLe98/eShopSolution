@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -44,7 +45,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>Tổng quan</span>
                 </a>
             </li>
 
@@ -61,11 +62,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Người dùng</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" asp-action="Index" asp-controller="User">Danh sách người dùng</a>
+                        <a class="collapse-item" asp-action="Create" asp-controller="User" >Thêm mới người dùng</a>
                         <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
@@ -358,9 +361,6 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <form class="dropdown-item" method="post" asp-controller="User" asp-action="Logout">
-                                    <button type="submit" class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">Đăng Xuất</button>
-                                </form>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -375,7 +375,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                @RenderBody();
+                    @RenderBody()
 
                 </div>
                 <!-- /.container-fluid -->
@@ -415,8 +415,10 @@
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <form method="post" asp-controller="User" asp-action="Logout">
+                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button class="btn btn-primary" type="submit">Đăng xuất</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -438,6 +440,12 @@
     <!-- Page level custom scripts -->
     <script src="/js/demo/chart-area-demo.js"></script>
     <script src="/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level plugins -->
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/demo/datatables-demo.js"></script>
 
 </body>
 
