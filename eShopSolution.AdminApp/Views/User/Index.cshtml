@@ -18,7 +18,7 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered mydatatable" id="datatable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Họ</th>
@@ -26,26 +26,38 @@
                         <th>Số điện thoại</th>
                         <th>Tên đăng nhập</th>
                         <th>Email</th>
+                        <th>Mlem</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Items)
                     {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.PhoneNumer)</td>
-                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { Id = item.Id });
-                            @Html.ActionLink("Details", "Details", new { Id = item.Id })
-                            @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PhoneNumer)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                            </td>
+                        </tr>
                     }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Họ</th>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Email</th>
+                        <th>Mlem</th>
+                    </tr>
+                </tfoot>
             </table>
+            @await Component.InvokeAsync("Pager", Model)
         </div>
     </div>
 </div>

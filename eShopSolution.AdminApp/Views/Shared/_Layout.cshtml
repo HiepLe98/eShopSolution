@@ -447,6 +447,66 @@
     <!-- Page level custom scripts -->
     <script src="/js/demo/datatables-demo.js"></script>
 
+    @*Use DataTable Boostrap*@
+    <script>
+        var table = $('.mydatatable').DataTable({
+
+            lengthMenu: [[5, 10, 50, 100, -1], [5, 10, 50, 100, "All"]], //Custom List Show number records
+
+            ////Custom filter dropdownlist
+            //initComplete: function () { 
+            //    this.api().columns().every(function () {
+            //        var column = this;
+            //        var select = $('<select><option value=""></option></select>')
+            //            .appendTo($(column.header()).empty())
+            //            .on('change', function () {
+            //                var val = $.fn.dataTable.util.escapeRegex(
+            //                    $(this).val()
+            //                );
+            //                column
+            //                    .search(val ? '^' + val + '$' : '', true, false)
+            //                    .draw();
+            //            });
+            //        column.data().unique().sort().each(function (d, j) {
+            //            select.append('<option value="' + d + '">' + d + '</option>')
+            //        });
+            //    });
+            //},
+
+            //Custom allow scroll girdview
+            //scrollY: 400,
+            //scrollX: true,
+            //scrollCollapse: true,
+
+            //"bProcessing": true,
+            //"sAutoWidth": false,
+            //"bDestroy": true,
+            //"sPaginationType": "bootstrap", // full_numbers
+            //"iDisplayStart ": 10,
+            //"iDisplayLength": 10,
+            "bPaginate": false, //hide pagination
+            //"bFilter": false, //hide Search bar
+            "bInfo": false, // hide showing entries
+
+            
+        });
+
+        ////Custom filter dropdownlist (Header)
+        $('.mydatatable tfoot th').each(function () { //change tfoot if want show footer and thead if want show header
+            var title = $(this).text();
+            $(this).html('<input type="Text" placeholder="Search ' + title + '"/>')
+        });
+
+        table.columns().every(function () {
+            var that = this;
+            $('input', this.footer()).on('keyup change', function () { //change footer if want show footer and header if want show header
+                if (that.search() !== this.value) {
+                    that.search(this.value).draw();
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
