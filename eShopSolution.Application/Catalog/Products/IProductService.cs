@@ -1,4 +1,4 @@
-﻿using eShopSolution.ViewModels.Catalog.Common;
+﻿using eShopSolution.ViewModels.Common;
 using eShopSolution.ViewModels.Catalog.ProductImages;
 using eShopSolution.ViewModels.Catalog.Products;
 using Microsoft.AspNetCore.Http;

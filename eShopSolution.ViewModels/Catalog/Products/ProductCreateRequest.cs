@@ -1,4 +1,4 @@
-﻿using eShopSolution.ViewModels.Catalog.Common;
+﻿using eShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;

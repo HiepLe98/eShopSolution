@@ -1,4 +1,4 @@
-﻿using eShopSolution.ViewModels.Catalog.Common;
+﻿using eShopSolution.ViewModels.Common;
 using eShopSolution.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,11 @@ namespace eShopSolution.AdminApp.Services
 {
     public interface IUserApiClient
     {
-        Task<string> Authenticate(LoginRequest request);
+        Task<ApiResult<string>> Authenticate(LoginRequest request);
 
-        Task<PagedResult<UserViewModel>> GetUserPagings(GetUserPagingRequest request);
-        Task<bool> RegisterUser(RegisterRequest registerRequest);
+        Task<ApiResult<PagedResult<UserViewModel>>> GetUserPagings(GetUserPagingRequest request);
+        Task<ApiResult<bool>> RegisterUser(RegisterRequest registerRequest);
+        Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest userUpdateRequest);
+        Task<ApiResult<UserViewModel>> GetById(Guid id);
     }
 }

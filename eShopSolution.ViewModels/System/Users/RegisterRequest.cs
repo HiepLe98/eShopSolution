@@ -6,7 +6,6 @@ namespace eShopSolution.ViewModels.System.Users
 {
     public class RegisterRequest
     {
-        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Dob { get; set; }
