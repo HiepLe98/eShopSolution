@@ -38,7 +38,7 @@ namespace eShopSolution.Application.System.Users
 
             var resault = await _signInManager.PasswordSignInAsync(user,request.Password,request.RememberMe, true);
             if (!resault.Succeeded)
-                return null;
+                return new ApiErrorResult<string>("Tài khoản không tồn tại.");
 
             var roles = _userManager.GetRolesAsync(user);
             var claims = new[]
