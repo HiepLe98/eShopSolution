@@ -25,7 +25,7 @@ namespace eShopSolution.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _userService.Authencate(request);
-            if (string.IsNullOrEmpty(result.ResultObj))
+            if (result == null || string.IsNullOrEmpty(result.ResultObj))
                 return BadRequest(result);
 
             return Ok(result);
@@ -51,6 +51,17 @@ namespace eShopSolution.BackendApi.Controllers
                 return BadRequest(ModelState);
 
             var result = await _userService.Update(id, request);
+            if (!result.IsSuccessed)
+                return BadRequest(result);
+            return Ok(result);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.DeleteById(id);
             if (!result.IsSuccessed)
                 return BadRequest(result);
             return Ok(result);

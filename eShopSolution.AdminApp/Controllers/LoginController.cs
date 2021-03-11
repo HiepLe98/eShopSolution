@@ -39,7 +39,7 @@ namespace eShopSolution.AdminApp.Controllers
                 return View();
 
             var result = await _userApiClient.Authenticate(request);
-            if (string.IsNullOrEmpty(result.ResultObj))
+            if (result == null || string.IsNullOrEmpty(result.ResultObj))
                 return View();
 
             var userPrincipal = this.ValidateToken(result.ResultObj);
@@ -55,6 +55,26 @@ namespace eShopSolution.AdminApp.Controllers
                         authProperties);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterRequest register)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _userApiClient.RegisterUser(register);
+
+            if (result.IsSuccessed)
+                return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.Message);
+            return View(register);
         }
         private ClaimsPrincipal ValidateToken(string jwtToken)
         {

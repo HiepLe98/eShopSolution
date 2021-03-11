@@ -61,6 +61,18 @@ namespace eShopSolution.Application.System.Users
            return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
+        public async Task<ApiResult<bool>> DeleteById(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+                return new ApiErrorResult<bool>("User khong ton tai");
+
+            var result = await _userManager.DeleteAsync(user);
+            if(result.Succeeded)
+                return new ApiSuccessResult<bool>();
+            return new ApiErrorResult<bool>("Xoa User khong thanh cong");
+        }
+
         public async Task<ApiResult<UserViewModel>> GetById(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
@@ -154,5 +166,6 @@ namespace eShopSolution.Application.System.Users
                 return new ApiSuccessResult<bool>();
             return new ApiErrorResult<bool>("Cap nhat khong thanh cong");
         }
+
     }
 }
