@@ -52,9 +52,10 @@
                             <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                             <td>@Html.DisplayFor(modelItem => item.Email)</td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                                @Html.ActionLink("Sua", "Edit", new { Id = item.Id }) |
+                                @Html.ActionLink("Xem", "Details", new { Id = item.Id }) |
+                                @Html.ActionLink("Xoa", "Delete", new { Id = item.Id }) |
+                                @Html.ActionLink("Cap quyen", "RoleAssign", new { Id = item.Id })
                             </td>
                         </tr>
                     }
