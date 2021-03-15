@@ -42,6 +42,8 @@ namespace eShopSolution.AdminApp.Controllers
             };
             var data = await _userApiClient.GetUserPagings(request);
             ViewBag.Keyword = keyword;
+            if (TempData["result"] != null)
+                ViewBag.SuccessMsg = TempData["result"];
             return View(data.ResultObj);
         }
         [HttpGet]
@@ -70,7 +72,10 @@ namespace eShopSolution.AdminApp.Controllers
             var result = await _userApiClient.RegisterUser(register);
 
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo mới thành công";
                 return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.Message);
             return View(register);
@@ -83,7 +88,10 @@ namespace eShopSolution.AdminApp.Controllers
             var result = await _userApiClient.UpdateUser(request.Id, request);
 
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Cập nhật thành công";
                 return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.Message);
             return View(request);
@@ -126,7 +134,10 @@ namespace eShopSolution.AdminApp.Controllers
             var result = await _userApiClient.DeleteUser(request.Id);
 
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa Người dùng thành công";
                 return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.Message);
             return View(request);
@@ -147,7 +158,10 @@ namespace eShopSolution.AdminApp.Controllers
             var result = await _userApiClient.RoleAssign(request.Id, request);
 
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Chỉnh sửa quyền thành công";
                 return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.Message);
             var roleAssignRequest = await GetRoleAssignRequest(request.Id);
