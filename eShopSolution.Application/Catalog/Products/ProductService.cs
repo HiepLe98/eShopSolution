@@ -104,15 +104,16 @@ namespace eShopSolution.Application.Catalog.Products
             //1. Select Join
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
-                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
-                        join c in _context.Categories on pic.CategoryId equals c.Id
-                        select new { p, pt, pic };
+                        //join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        //join c in _context.Categories on pic.CategoryId equals c.Id
+                        where pt.LanguageId == request.LanguageId
+                        select new { p, pt };
 
             //2. Filter
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
-            if (request.CategoryIds.Count > 0)
-                query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
+            //if (request.CategoryIds != null && request.CategoryIds.Count > 0)
+            //    query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
             //3. Paging
             int totalRow = await query.CountAsync();
 
@@ -242,7 +243,7 @@ namespace eShopSolution.Application.Catalog.Products
             throw new NotImplementedException();
         }
 
-        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        public async Task<ApiResult<ProductViewModel>> GetById(int productId, string languageId)
         {
             var product = await _context.Products.FindAsync(productId);
 
@@ -265,7 +266,7 @@ namespace eShopSolution.Application.Catalog.Products
                 ViewCount = product.ViewCount
 
             };
-            return productViewModel;
+            return new ApiSuccessResult<ProductViewModel>(productViewModel);
         }
 
         public async Task<int> AddImage(int productId, ProductImageCreateRequest request)

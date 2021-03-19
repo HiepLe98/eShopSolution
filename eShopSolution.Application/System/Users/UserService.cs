@@ -34,7 +34,7 @@ namespace eShopSolution.Application.System.Users
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null)
-                return null;
+                return new ApiErrorResult<string>("Tên Tài khoản không tồn tại.");
 
             var resault = await _signInManager.PasswordSignInAsync(user,request.Password,request.RememberMe, true);
             if (!resault.Succeeded)

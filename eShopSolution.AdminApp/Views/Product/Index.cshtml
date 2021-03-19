@@ -1,0 +1,93 @@
+﻿@using eShopSolution.ViewModels.Common;
+@model PagedResult<eShopSolution.ViewModels.Catalog.Products.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Danh sách Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+    }, 2000);
+    </script>
+}
+
+<h1>Danh Sách Sản phẩm</h1>
+<ol class="breadcrumb ">
+    <li class="breadcrumb-item">Trang chủ</li>
+    <li class="breadcrumb-item active">Danh Sách Sản phẩm</li>
+</ol>
+<p>
+    <a class="btn btn-success" asp-action="Create" asp-controller="Product">Tạo mới</a>
+</p>
+<div class="col-md-6 col-xs-12 mb-4">
+    <form asp-action="Index" method="get">
+        <div class="row">
+            <div class="col-md-9">
+                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+            </div>
+            <div class="cold-md-3">
+                <button type="submit" class="btn btn-primary">Tìm</button>
+                <button type="button" onclick="window.location.href='/Product/Index'" class="btn btn-dark">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        @if (ViewBag.SuccessMsg != null)
+        {
+            <div id="msgAlert" class="alert alert-success" role="alert">
+                @ViewBag.SuccessMsg
+            </div>
+        }
+        <div class="table-responsive">
+            <table class="table table-bordered mydatatable" id="datatable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Mô tả</th>
+                        <th>Thời gian tạo</th>
+                        <th>Mlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatedDateTime)</td>
+                        <td>
+                            @Html.ActionLink("Sua", "Edit", new { Id = item.Id }) |
+                            @Html.ActionLink("Xem", "Details", new { Id = item.Id }) |
+                            @Html.ActionLink("Xoa", "Delete", new { Id = item.Id }) |
+                            @Html.ActionLink("Cap quyen", "RoleAssign", new { Id = item.Id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Mô tả</th>
+                        <th>Thời gian tạo</th>
+                        <th>Mlem</th>
+                    </tr>
+                </tfoot>
+            </table>
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

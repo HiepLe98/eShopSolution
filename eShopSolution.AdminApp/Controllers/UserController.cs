@@ -33,7 +33,6 @@ namespace eShopSolution.AdminApp.Controllers
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 2)
         {
-
             var request = new GetUserPagingRequest()
             {
                 Keyword = keyword,
