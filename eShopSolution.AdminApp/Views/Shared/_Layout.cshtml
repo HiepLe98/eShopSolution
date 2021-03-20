@@ -230,15 +230,22 @@
     <!-- Page level plugins -->
     <script src="/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
+
     <!-- Page level plugins -->
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="/js/demo/datatables-demo.js"></script>
+
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
+    <script> 
+        var allEditors = document.querySelectorAll('.editor');
+        for (var i = 0; i < allEditors.length; ++i) {
+            ClassicEditor.create(allEditors[i], { toolbar: ['heading', '|', 'bold', 'italic', 'link'] });
+        }
+    </script>
 
     @*Use DataTable Boostrap*@
     <script>
@@ -247,7 +254,7 @@
             lengthMenu: [[5, 10, 50, 100, -1], [5, 10, 50, 100, "All"]], //Custom List Show number records
 
             ////Custom filter dropdownlist
-            //initComplete: function () { 
+            //initComplete: function () {
             //    this.api().columns().every(function () {
             //        var column = this;
             //        var select = $('<select><option value=""></option></select>')
@@ -281,7 +288,7 @@
             //"bFilter": false, //hide Search bar
             "bInfo": false, // hide showing entries
 
-            
+
         });
 
         ////Custom filter dropdownlist (Header)
@@ -299,7 +306,7 @@
             });
         });
     </script>
-    @RenderSection("Scripts",required:false)
+    @RenderSection("Scripts", required: false)
 
 </body>
 
