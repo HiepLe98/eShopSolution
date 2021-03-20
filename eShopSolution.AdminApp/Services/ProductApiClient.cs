@@ -29,7 +29,8 @@ namespace eShopSolution.AdminApp.Services
                 $"pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
                 $"&keyword={request.Keyword}" +
-                $"&languageId={request.LanguageId}"
+                $"&languageId={request.LanguageId}" +
+                $"&categoryId={request.CategoryId}"
                 );
         }
 

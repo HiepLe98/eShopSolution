@@ -41,6 +41,23 @@ namespace eShopSolution.AdminApp.Services
             }
             return JsonConvert.DeserializeObject<TResponse>(body);
         }
+        protected async Task<List<T>> GetListAsync<T>(string url)
+        {
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSettings.Token);
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var reponse = await client.GetAsync(url);
+
+            var body = await reponse.Content.ReadAsStringAsync();
+            if (reponse.IsSuccessStatusCode)
+            {
+                var data = (List<T>)JsonConvert.DeserializeObject(body, typeof(List<T>));
+                return data;
+            }
+            throw new Exception(body);
+        }
         protected async Task<TResponse> DeletetAsync<TResponse>(string url)
         {
             var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
